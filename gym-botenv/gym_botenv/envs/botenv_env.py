@@ -3,11 +3,15 @@ import numpy as np
 import uuid
 import itertools
 import random
+import operator
 from gym_botenv.envs.environment import Website, State
 from gym import error, spaces, utils
 
 
-def generate_fakeSites(nSites: int, nSP: int, probSP: float, probFP: float, probBB: float):
+security_provider_grades = {}
+
+
+def generate_fakesites(nSites: int, nSP: int, probSP: float, probFP: float, probBB: float):
     """
 
     :param nSites: Amount of fake websites generated
@@ -38,6 +42,7 @@ def generate_fakeSites(nSites: int, nSP: int, probSP: float, probFP: float, prob
         listWebsite.append(website_obj)
 
     return listWebsite
+
 
 def generate_states(listWebsite: list, numBinaryParams: int):
     """
@@ -73,8 +78,64 @@ def generate_states(listWebsite: list, numBinaryParams: int):
 
     return states
 
-def isBotBlocked(website: Website):
-    #Applying 
+
+def randomize_securityprovider(nSP: int, limits: tuple, seed = 1000):
+    random.seed(seed)
+
+    return {x: random.randint(limits[0], limits[1]+1) for x in range(1,nSP+1)}
+
+
+def init_security_provider_freq(nSP: int):
+    return {x: 0 for x in range(1, nSP+1)}
+
+
+def normalized_websites_values(listWebsites: list, security_provider_freq: dict, security_provider_grades: dict):
+    values = {}
+    for website in listWebsites:
+        website.computeValue(security_provider_grades, security_provider_freq)
+        values[website.id] = website.value
+
+    maximum = max(values.items(), key=operator.itemgetter(1))[1]
+    minimum = min(values.items(), key=operator.itemgetter(1))[1]
+
+    for id, value in values.items():
+        values[id] = float(float(value-minimum)/float(maximum - minimum))
+
+    return values
+
+
+def is_bot_blocked(website: Website, valuesDict: dict):
+    probs = np.ones(2, dtype=float) * valuesDict[website.id]
+    probs[0] = 1-probs[1]
+
+    return int(np.random.choice([0,1], p=probs))
+
+
+def state_to_websites(list_websites: list, list_states: list, dictSP: dict):
+    state_map = {}
+    for state in list_states:
+        state_map[state] = []
+        for website in list_websites:
+            if state.useFP != website.hasFingerprinting:
+                continue
+            elif state.useBB != website.blockbots:
+                continue
+            elif website.amount_page_visited not in range(state.rangeVisitedPage[0], state.rangeVisitedPage[1]+1):
+                continue
+            else:
+                security_provider = website.securityProvider
+                if security_provider == 0:
+                    state_map[state].append(website)
+                else:
+                    if dictSP[security_provider] in range(state.rangeVisitedPage[0], state.rangeVisitedSecuProvider[1]+1):
+                        state_map[state].append(website)
+
+    return state_map
+
+
+def upgrade_state_list(website, state, state_map: dict):
+    pass
+
 
 
 class BotenvEnv(gym.Env):
@@ -95,16 +156,16 @@ class BotenvEnv(gym.Env):
     """
     reward_range = (-50, 10)
 
-    def __init__(self, nSites=1000):
+    def __init__(self, nSites=1000, nSP=10, probSP=1/4, probFP=1/4, probBB=1/5):
         self.action_space = spaces.Discrete(3) #3 actions for now
-
-
+        self.observation_space = spaces.Tuple(
+            spaces.Tuple(spaces.Discrete(4)),
+            spaces.Discrete(2)
+        )
 
     def step(self, action):
         assert self.action_space.contains(action)
         pass
-
-
 
     def reset(self):
         pass

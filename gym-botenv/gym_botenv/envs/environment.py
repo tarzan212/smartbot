@@ -19,6 +19,16 @@ class Website:
                   Amount of visited pages : %d \n
                   """ % (self.id, self.securityProvider, self.hasFingerprinting, self.blockbots, self.amount_page_visited)
 
+    def computeValue(self, securityprovider: dict, visitedPageSecuProvider: dict):
+        if self.securityProvider != 0:
+            self.value = securityprovider[self.securityProvider] * 15 + visitedPageSecuProvider[
+                self.securityProvider] * 10 \
+                         + int(self.hasFingerprinting) * 12 + int(self.blockbots) * 20 + self.amount_page_visited * 10
+        else:
+            self.value = int(self.hasFingerprinting) * 12 + int(self.blockbots) * 20 + self.amount_page_visited * 10
+
+    def incrementVisitedPage(self):
+        self.amount_page_visited = self.amount_page_visited + 1;
 
 class State:
 
