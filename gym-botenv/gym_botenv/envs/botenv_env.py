@@ -133,8 +133,10 @@ def state_to_websites(list_websites: list, list_states: list, dictSP: dict):
     return state_map
 
 
-def upgrade_state_list(website, state, state_map: dict):
-    pass
+def upgrade_state_list(website, state, state_map: dict, dictSP: dict):
+    state_map[state].pop(state_map[state].index(website))
+    for state,_ in state_map.items():
+        pass #TODO: A continuer + faire documentation
 
 
 
