@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d38814f-8eb5-401d-98f0-d1835897cde2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gym_botenv/envs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_botenv/envs/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gym_botenv/envs/environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_botenv/envs/environment.py" afterDir="false" />
     </list>
@@ -20,8 +18,9 @@
         <counts>
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.22" value="2" />
+          <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -36,14 +35,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="11" />
-          <entry key="py" value="10478" />
+          <entry key="dummy" value="34" />
+          <entry key="py" value="11904" />
+          <entry key="txt" value="75" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="11" />
-          <entry key="Python" value="10478" />
+          <entry key="PLAIN_TEXT" value="109" />
+          <entry key="Python" value="11904" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -83,12 +83,14 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/gym_botenv/envs/botenv_env.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3077">
-                  <caret line="181" selection-start-line="181" selection-end-line="181" />
+                <state relative-caret-position="1081">
+                  <caret line="188" column="50" selection-start-line="188" selection-start-column="50" selection-end-line="188" selection-end-column="50" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
-                    <marker date="1538841672476" expanded="true" signature="3641:3642" ph="..." />
-                    <marker date="1538841672476" expanded="true" signature="7309:7328" ph="..." />
+                    <marker date="1538930984905" expanded="true" signature="1749:1750" ph="..." />
+                    <marker date="1538930984905" expanded="true" signature="2942:2944" ph="..." />
+                    <marker date="1538930984905" expanded="true" signature="3631:3632" ph="..." />
+                    <marker date="1538930984905" expanded="true" signature="7320:7339" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -115,20 +117,19 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/gym_botenv/envs/environment.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+                <state relative-caret-position="476">
+                  <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
-                    <marker date="1538842425862" expanded="true" signature="44:45" ph="..." />
-                    <marker date="1538842425862" expanded="true" signature="150:159" ph="..." />
-                    <marker date="1538842425862" expanded="true" signature="1388:1393" ph="..." />
-                    <marker date="1538842425862" expanded="true" signature="1923:1924" ph="..." />
-                    <marker date="1538842425862" expanded="true" signature="2594:2595" ph="..." />
-                    <marker date="1538842425862" expanded="true" signature="2594:2604" ph="..." />
+                    <marker date="1538929502241" expanded="true" signature="707:708" ph="..." />
+                    <marker date="1538929502241" expanded="true" signature="826:835" ph="..." />
+                    <marker date="1538929502241" expanded="true" signature="1598:1604" ph="..." />
+                    <marker date="1538929502241" expanded="true" signature="2096:2101" ph="..." />
+                    <marker date="1538929502241" expanded="true" signature="2631:2632" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -154,16 +155,16 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/gym_botenv/__init__.py" />
         <option value="$PROJECT_DIR$/gym_botenv/envs/__init__.py" />
-        <option value="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" />
         <option value="$PROJECT_DIR$/gym_botenv/envs/environment.py" />
+        <option value="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="991" />
-    <option name="y" value="-4" />
+    <option name="x" value="371" />
+    <option name="y" value="497" />
     <option name="width" value="929" />
-    <option name="height" value="1048" />
+    <option name="height" value="1076" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -201,6 +202,14 @@
       <option name="presentableId" value="Default" />
       <updated>1538572532719</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added some features toward the environment completion.">
+      <created>1538843635036</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1538843635036</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -211,7 +220,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3294979" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -228,6 +237,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added some features toward the environment completion." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some features toward the environment completion." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/spaces/discrete.py">
@@ -272,6 +285,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gym_botenv/envs/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="45" selection-start-column="45" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/spaces/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -286,37 +306,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gym_botenv/envs/__init__.py">
+    <entry file="file://$PROJECT_DIR$/gym_botenv/envs/environment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="45" selection-start-column="45" selection-end-column="45" />
+        <state relative-caret-position="476">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1538929502241" expanded="true" signature="707:708" ph="..." />
+            <marker date="1538929502241" expanded="true" signature="826:835" ph="..." />
+            <marker date="1538929502241" expanded="true" signature="1598:1604" ph="..." />
+            <marker date="1538929502241" expanded="true" signature="2096:2101" ph="..." />
+            <marker date="1538929502241" expanded="true" signature="2631:2632" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gym_botenv/envs/botenv_env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3077">
-          <caret line="181" selection-start-line="181" selection-end-line="181" />
+        <state relative-caret-position="1081">
+          <caret line="188" column="50" selection-start-line="188" selection-start-column="50" selection-end-line="188" selection-end-column="50" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1538841672476" expanded="true" signature="3641:3642" ph="..." />
-            <marker date="1538841672476" expanded="true" signature="7309:7328" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gym_botenv/envs/environment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1538842425862" expanded="true" signature="44:45" ph="..." />
-            <marker date="1538842425862" expanded="true" signature="150:159" ph="..." />
-            <marker date="1538842425862" expanded="true" signature="1388:1393" ph="..." />
-            <marker date="1538842425862" expanded="true" signature="1923:1924" ph="..." />
-            <marker date="1538842425862" expanded="true" signature="2594:2595" ph="..." />
-            <marker date="1538842425862" expanded="true" signature="2594:2604" ph="..." />
+            <marker date="1538930984905" expanded="true" signature="1749:1750" ph="..." />
+            <marker date="1538930984905" expanded="true" signature="2942:2944" ph="..." />
+            <marker date="1538930984905" expanded="true" signature="3631:3632" ph="..." />
+            <marker date="1538930984905" expanded="true" signature="7320:7339" ph="..." />
           </folding>
         </state>
       </provider>

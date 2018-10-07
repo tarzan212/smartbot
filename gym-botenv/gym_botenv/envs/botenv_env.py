@@ -4,11 +4,22 @@ import uuid
 import itertools
 import random
 import operator
-from gym_botenv.envs.environment import Website, State
+from gym_botenv.envs.environment import Website, State, SecurityProvider
 from gym import error, spaces, utils
 
 
-def generate_fake_sites(nSites: int, nSP: int, probSP: float, probFP: float, probBB: float):
+def generate_security_providers(nSP: int, limits: tuple):
+    """
+    """
+    list_security_providers = {}
+    for i in range(nSP):
+        grade = random.randint(limits[0], limits[1] + 1)
+        list_security_providers[i] = SecurityProvider(i, grade)
+
+    return list_security_providers
+
+
+def generate_fake_sites(nSites: int, security_providers: dict, probSP: float, probFP: float, probBB: float):
     """
 
     :param nSites: Amount of fake websites generated
@@ -18,8 +29,8 @@ def generate_fake_sites(nSites: int, nSP: int, probSP: float, probFP: float, pro
     :param probBB: Probability that a website block bots
     :return: list of nSites fake websites containing a tuple of values
     """
-    A = [security_provider for security_provider in range(nSP + 1)]
-    probsSP = np.ones(nSP + 1, dtype=float) * probSP / nSP
+    nSP = len(security_providers)
+    probsSP = np.ones(nSP, dtype=float) * probSP / (nSP - 1)
     probsSP[0] = 1 - probSP
 
     probsFP = np.ones(2, dtype=float) * probFP
@@ -31,7 +42,7 @@ def generate_fake_sites(nSites: int, nSP: int, probSP: float, probFP: float, pro
     list_website = []
     for i in range(nSites):
         id = uuid.uuid4()
-        SP = np.random.choice(A, p=probsSP)
+        SP = np.random.choice(list(security_providers.keys()), p=probsSP)
         FP = np.random.choice([0, 1], p=probsFP)  # 0 : doesnt use fp, 1:use fp
         BB = np.random.choice([0, 1], p=probsBB)  # 0: doesnt block bots, 1 block bots
         num_page_visit = 0
@@ -76,20 +87,11 @@ def generate_states(list_website: list, numBinaryParams: int):
     return states
 
 
-def randomize_security_provider(nSP: int, limits: tuple, seed=1000):
-    random.seed(seed)
 
-    return {x: random.randint(limits[0], limits[1] + 1) for x in range(1, nSP + 1)}
-
-
-def init_security_provider_freq(nSP: int):
-    return {x: 0 for x in range(1, nSP + 1)}
-
-
-def normalized_websites_values(list_website: list, security_provider_freq: dict, security_provider_grades: dict):
+def normalized_websites_values(list_website: list, security_providers: dict):
     values = {}
     for website in list_website:
-        website.compute_value(security_provider_grades, security_provider_freq)
+        website.compute_value(security_providers)
         values[website.id] = website.value
 
     maximum = max(values.items(), key=operator.itemgetter(1))[1]
@@ -108,7 +110,7 @@ def is_bot_blocked(website: Website, values_dict: dict):
     return int(np.random.choice([0, 1], p=probs))
 
 
-def websites_to_state(list_websites: list, list_states: list, dict_sp: dict):
+def websites_to_state(list_websites: list, list_states: list, security_providers: dict):
     state_map = {}
     copy_list_website = list_websites
     for state in list_states:
@@ -121,12 +123,12 @@ def websites_to_state(list_websites: list, list_states: list, dict_sp: dict):
             elif website.amount_page_visited not in range(state.rangeVisitedPage[0], state.rangeVisitedPage[1] + 1):
                 continue
             else:
-                security_provider = website.securityProvider
+                security_provider = website.security_provider
                 if security_provider == 0:
                     state_map[state].append(website)
                     copy_list_website.pop(index)
                 else:
-                    if dict_sp[security_provider] in range(state.rangeVisitedSecuProvider[0],
+                    if security_providers[security_provider].counter_visited in range(state.rangeVisitedSecuProvider[0],
                                                            state.rangeVisitedSecuProvider[1] + 1):
                         state_map[state].append(website)
                         copy_list_website.pop(index)
@@ -134,7 +136,7 @@ def websites_to_state(list_websites: list, list_states: list, dict_sp: dict):
     return state_map
 
 
-def upgrade_state_list(website, state, state_map: dict, dict_sp: dict):
+def upgrade_state_list(website, state, state_map: dict, security_providers: dict):
     state_map[state].pop(state_map[state].index(website))
     for state, _ in state_map.items():
         if state.useFP != website.hasFingerprinting:
@@ -144,12 +146,12 @@ def upgrade_state_list(website, state, state_map: dict, dict_sp: dict):
         elif website.amount_page_visited not in range(state.rangeVisitedPage[0], state.rangeVisitedPage[1] + 1):
             continue
         else:
-            security_provider = website.securityProvider
+            security_provider = website.security_provider
             if security_provider == 0:
                 state_map[state].append(website)
                 break
             else:
-                if dict_sp[security_provider] in range(state.rangeVisitedSecuProvider[0],
+                if security_providers[security_provider].counter_visited in range(state.rangeVisitedSecuProvider[0],
                                                        state.rangeVisitedSecuProvider[1] + 1):
                     state_map[state].append(website)
                     break
@@ -180,10 +182,9 @@ class BotenvEnv(gym.Env):
             spaces.Discrete(1)
         )
 
-        self.sites = generate_fake_sites(nSites, nSP, prob_sp, prob_fp, prob_bb)
+        self.security_providers = generate_security_providers(nSP, (0, 10))
+        self.sites = generate_fake_sites(nSites, self.security_providers, prob_sp, prob_fp, prob_bb)
         self.states = generate_states(self.sites, 2)
-        self.security_provider_grades = randomize_security_provider(nSP, (0, 10))
-        self.security_provider_freq = init_security_provider_freq(nSP)
 
         self.states_map = websites_to_state(self.sites, self.states, self.security_provider_freq)
         self.reset()

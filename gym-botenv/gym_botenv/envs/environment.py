@@ -1,20 +1,47 @@
 import uuid
 import itertools
 
+
+class SecurityProvider:
+
+    def __init__(self, id_sp: int, grade_sp: int):
+        self.id = id_sp
+        self.grade = grade_sp
+
+        self.counter_visited = 0
+        self.list_websites = []
+
+        self.list_blocked_ip = []
+
+    def block_ip(self, ip, limit_ip:int):
+        if len(self.list_blocked_ip) < limit_ip:
+            self.list_blocked_ip = [ip] + self.list_blocked_ip
+        else:
+            self.list_blocked_ip.pop(limit_ip-1)
+            self.list_blocked_ip = [ip] + self.list_blocked_ip
+
+    def increment_counter(self):
+        self.counter_visited += 1
+
+    def add_website(self, website):
+        self.list_websites.append(website)
+
+
 class Website:
 
-    def __init__(self, uid: uuid, SP: int, FP: bool, BB: bool, page_visited: int):
+    def __init__(self, uid: uuid, SP: SecurityProvider, FP: bool, BB: bool, page_visited: int):
         self.id = uid
-        self.securityProvider = SP
+        self.security_provider = SP
         self.hasFingerprinting = FP
         self.blockbots = BB
         self.amount_page_visited = page_visited
 
-    def compute_value(self, securityprovider: dict, visitedPageSecuProvider: dict):
-        if self.securityProvider != 0:
-            self.value = securityprovider[self.securityProvider] * 15 + visitedPageSecuProvider[
-                self.securityProvider] * 10 \
-                         + int(self.hasFingerprinting) * 12 + int(self.blockbots) * 20 + self.amount_page_visited * 10
+    def compute_value(self, security_providers: dict):
+        if self.security_provider != 0:
+            self.value = security_providers[self.security_provider].grade * 15 + \
+                         security_providers[self.security_provider].counter_visited * 10 \
+                         + int(self.hasFingerprinting) * 12 + int(self.blockbots) * 20 + \
+                         self.amount_page_visited * 10
         else:
             self.value = int(self.hasFingerprinting) * 12 + int(self.blockbots) * 20 + self.amount_page_visited * 10
 
@@ -23,7 +50,7 @@ class Website:
 
     def __str__(self):
         return """{ 'id' : %s, 'security_provider' : %d, 'fp' : %r, 'bb' : %r, 'visited' : %d } """ \
-                   % (self.id, self.securityProvider, self.hasFingerprinting, self.blockbots, self.amount_page_visited)
+                   % (self.id, self.security_provider, self.hasFingerprinting, self.blockbots, self.amount_page_visited)
 
 
 class State:
@@ -60,7 +87,7 @@ class Actions:
         :return: list of tuples of possible combinations
         """
         list_actions = []
-        for index in range(1,len(self.main_actions)+1):
+        for index in range(1, len(self.main_actions)+1):
             elements = itertools.combinations(self.main_actions, index)
             for element in elements:
                 list_actions.append(element)
@@ -70,6 +97,3 @@ class Actions:
     def map_action(self, action: tuple):
         pass
 
-
-class SecurityProvider:
-    pass
