@@ -200,3 +200,5 @@ class BotenvEnv(gym.Env):
 
     def render(self, mode='human', close=False):
         pass
+
+#TODO: How to take into consideration that an IP visited a website ?

@@ -94,6 +94,6 @@ class Actions:
 
         return list_actions
 
-    def map_action(self, action: tuple):
+    def map_actions(self, actions: tuple):
         pass
 
