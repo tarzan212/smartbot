@@ -100,7 +100,8 @@ class Actions:
         for action in actions:
             if action == 0:
                 continue
-                #TODO: How to pick a state ?
+                # TODO: How to pick a state ?
+                # Randomly ?
             elif action == 1:
                 continue
                 # TODO: Pick one UA in list of UA in a file

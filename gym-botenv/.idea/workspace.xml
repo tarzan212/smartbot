@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d38814f-8eb5-401d-98f0-d1835897cde2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/gym_botenv/envs/Bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gym_botenv/envs/environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_botenv/envs/environment.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,14 +37,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="34" />
-          <entry key="py" value="12916" />
+          <entry key="py" value="12936" />
           <entry key="txt" value="115" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="149" />
-          <entry key="Python" value="12916" />
+          <entry key="Python" value="12936" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -149,14 +147,14 @@
             <entry file="file://$PROJECT_DIR$/gym_botenv/envs/environment.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="695">
-                  <caret line="102" column="44" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
+                  <caret line="102" column="18" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
-                    <marker date="1539115078748" expanded="true" signature="707:708" ph="..." />
-                    <marker date="1539115078748" expanded="true" signature="826:835" ph="..." />
-                    <marker date="1539115078748" expanded="true" signature="1598:1604" ph="..." />
-                    <marker date="1539115078748" expanded="true" signature="2096:2101" ph="..." />
-                    <marker date="1539115078748" expanded="true" signature="2631:2632" ph="..." />
+                    <marker date="1539115543478" expanded="true" signature="707:708" ph="..." />
+                    <marker date="1539115543478" expanded="true" signature="826:835" ph="..." />
+                    <marker date="1539115543478" expanded="true" signature="1598:1604" ph="..." />
+                    <marker date="1539115543478" expanded="true" signature="2096:2101" ph="..." />
+                    <marker date="1539115543478" expanded="true" signature="2631:2632" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -183,8 +181,8 @@
         <option value="$PROJECT_DIR$/gym_botenv/__init__.py" />
         <option value="$PROJECT_DIR$/gym_botenv/envs/__init__.py" />
         <option value="$PROJECT_DIR$/gym_botenv/envs/Bot.py" />
-        <option value="$PROJECT_DIR$/gym_botenv/envs/environment.py" />
         <option value="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" />
+        <option value="$PROJECT_DIR$/gym_botenv/envs/environment.py" />
       </list>
     </option>
   </component>
@@ -268,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538931949778</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added some tweaks to the environment">
+      <created>1539115087217</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1539115087217</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -379,21 +384,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gym_botenv/envs/environment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="102" column="44" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1539115078748" expanded="true" signature="707:708" ph="..." />
-            <marker date="1539115078748" expanded="true" signature="826:835" ph="..." />
-            <marker date="1539115078748" expanded="true" signature="1598:1604" ph="..." />
-            <marker date="1539115078748" expanded="true" signature="2096:2101" ph="..." />
-            <marker date="1539115078748" expanded="true" signature="2631:2632" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gym_botenv/envs/botenv_env.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="635">
@@ -405,6 +395,21 @@
             <marker date="1539115078701" expanded="true" signature="3640:3641" ph="..." />
             <marker date="1539115078701" expanded="true" signature="7068:7283" ph="..." />
             <marker date="1539115078701" expanded="true" signature="7302:7321" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gym_botenv/envs/environment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="695">
+          <caret line="102" column="18" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1539115543478" expanded="true" signature="707:708" ph="..." />
+            <marker date="1539115543478" expanded="true" signature="826:835" ph="..." />
+            <marker date="1539115543478" expanded="true" signature="1598:1604" ph="..." />
+            <marker date="1539115543478" expanded="true" signature="2096:2101" ph="..." />
+            <marker date="1539115543478" expanded="true" signature="2631:2632" ph="..." />
           </folding>
         </state>
       </provider>
