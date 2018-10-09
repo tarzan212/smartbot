@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d38814f-8eb5-401d-98f0-d1835897cde2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/gym_botenv/envs/Bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gym_botenv/envs/environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_botenv/envs/environment.py" afterDir="false" />
@@ -19,117 +20,143 @@
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.23" value="1" />
+          <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.30" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="22" />
+          <entry key="py" value="26" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="22" />
+          <entry key="Python" value="26" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="34" />
-          <entry key="py" value="11984" />
+          <entry key="py" value="12916" />
           <entry key="txt" value="115" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="149" />
-          <entry key="Python" value="11984" />
+          <entry key="Python" value="12916" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.6696751">
       <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/setup.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="75">
-                  <caret line="5" selection-start-line="5" selection-end-line="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/gym_botenv/__init__.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" selection-start-line="12" selection-end-line="12" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/gym_botenv/envs/__init__.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="45" selection-start-column="45" selection-end-column="45" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/gym_botenv/envs/botenv_env.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="775">
-                  <caret line="203" column="68" selection-start-line="203" selection-start-column="68" selection-end-line="203" selection-end-column="68" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                    <marker date="1538932154926" expanded="true" signature="1749:1750" ph="..." />
-                    <marker date="1538932154926" expanded="true" signature="2942:2944" ph="..." />
-                    <marker date="1538932154926" expanded="true" signature="3631:3632" ph="..." />
-                    <marker date="1538932154926" expanded="true" signature="7320:7339" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/spaces/__init__.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="30">
-                  <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/core.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1395">
-                  <caret line="98" selection-start-line="98" selection-end-line="98" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
+        <splitter split-orientation="horizontal" split-proportion="0.67155665">
+          <split-first>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/setup.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="75">
+                      <caret line="5" selection-start-line="5" selection-end-line="5" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/gym_botenv/__init__.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="180">
+                      <caret line="12" selection-start-line="12" selection-end-line="12" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/gym_botenv/envs/__init__.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state>
+                      <caret column="45" selection-start-column="45" selection-end-column="45" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/gym_botenv/envs/botenv_env.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="635">
+                      <caret line="189" column="61" selection-start-line="189" selection-start-column="61" selection-end-line="189" selection-end-column="61" />
+                      <folding>
+                        <element signature="e#0#10#0" expanded="true" />
+                        <marker date="1539115078701" expanded="true" signature="1758:1759" ph="..." />
+                        <marker date="1539115078701" expanded="true" signature="2951:2953" ph="..." />
+                        <marker date="1539115078701" expanded="true" signature="3640:3641" ph="..." />
+                        <marker date="1539115078701" expanded="true" signature="7068:7283" ph="..." />
+                        <marker date="1539115078701" expanded="true" signature="7302:7321" ph="..." />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/core.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="1395">
+                      <caret line="98" selection-start-line="98" selection-end-line="98" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/gym_botenv/envs/Bot.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="105">
+                      <caret line="8" selection-start-line="8" selection-end-line="8" />
+                      <folding>
+                        <marker date="1539112282579" expanded="true" signature="29:34" ph="..." />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/gym_botenv/envs/Bot.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="30">
+                      <caret line="2" selection-start-line="2" selection-end-line="2" />
+                      <folding>
+                        <marker date="1539112282579" expanded="true" signature="29:34" ph="..." />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/gym_botenv/envs/environment.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="737">
-                  <caret line="96" column="19" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+                <state relative-caret-position="695">
+                  <caret line="102" column="44" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
-                    <marker date="1538932155010" expanded="true" signature="707:708" ph="..." />
-                    <marker date="1538932155010" expanded="true" signature="826:835" ph="..." />
-                    <marker date="1538932155010" expanded="true" signature="1598:1604" ph="..." />
-                    <marker date="1538932155010" expanded="true" signature="2096:2101" ph="..." />
-                    <marker date="1538932155010" expanded="true" signature="2631:2632" ph="..." />
+                    <marker date="1539115078748" expanded="true" signature="707:708" ph="..." />
+                    <marker date="1539115078748" expanded="true" signature="826:835" ph="..." />
+                    <marker date="1539115078748" expanded="true" signature="1598:1604" ph="..." />
+                    <marker date="1539115078748" expanded="true" signature="2096:2101" ph="..." />
+                    <marker date="1539115078748" expanded="true" signature="2631:2632" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -155,8 +182,9 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/gym_botenv/__init__.py" />
         <option value="$PROJECT_DIR$/gym_botenv/envs/__init__.py" />
-        <option value="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" />
+        <option value="$PROJECT_DIR$/gym_botenv/envs/Bot.py" />
         <option value="$PROJECT_DIR$/gym_botenv/envs/environment.py" />
+        <option value="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" />
       </list>
     </option>
   </component>
@@ -173,7 +201,31 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="gym-botenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gym-botenv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gym-botenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gym-botenv" type="462c0819:PsiDirectoryNode" />
+              <item name="gym_botenv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gym-botenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gym-botenv" type="462c0819:PsiDirectoryNode" />
+              <item name="gym_botenv" type="462c0819:PsiDirectoryNode" />
+              <item name="envs" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -220,10 +272,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="63" y="-4" width="1857" height="1084" extended-state="6" />
+    <frame x="62" y="-11" width="1859" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24918212" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.09378408" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -251,13 +303,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added some tweaks to the environment" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/spaces/discrete.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/spaces/box.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -300,13 +345,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/spaces/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/core.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1395">
@@ -314,31 +352,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gym_botenv/envs/botenv_env.py">
+    <entry file="file://$PROJECT_DIR$/gym_botenv/envs/Bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="203" column="68" selection-start-line="203" selection-start-column="68" selection-end-line="203" selection-end-column="68" />
+        <state relative-caret-position="105">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1538932154926" expanded="true" signature="1749:1750" ph="..." />
-            <marker date="1538932154926" expanded="true" signature="2942:2944" ph="..." />
-            <marker date="1538932154926" expanded="true" signature="3631:3632" ph="..." />
-            <marker date="1538932154926" expanded="true" signature="7320:7339" ph="..." />
+            <marker date="1539112282579" expanded="true" signature="29:34" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/spaces/discrete.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/spaces/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="73" lean-forward="true" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gym_botenv/envs/environment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="737">
-          <caret line="96" column="19" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+        <state relative-caret-position="695">
+          <caret line="102" column="44" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1538932155010" expanded="true" signature="707:708" ph="..." />
-            <marker date="1538932155010" expanded="true" signature="826:835" ph="..." />
-            <marker date="1538932155010" expanded="true" signature="1598:1604" ph="..." />
-            <marker date="1538932155010" expanded="true" signature="2096:2101" ph="..." />
-            <marker date="1538932155010" expanded="true" signature="2631:2632" ph="..." />
+            <marker date="1539115078748" expanded="true" signature="707:708" ph="..." />
+            <marker date="1539115078748" expanded="true" signature="826:835" ph="..." />
+            <marker date="1539115078748" expanded="true" signature="1598:1604" ph="..." />
+            <marker date="1539115078748" expanded="true" signature="2096:2101" ph="..." />
+            <marker date="1539115078748" expanded="true" signature="2631:2632" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gym_botenv/envs/botenv_env.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="189" column="61" selection-start-line="189" selection-start-column="61" selection-end-line="189" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1539115078701" expanded="true" signature="1758:1759" ph="..." />
+            <marker date="1539115078701" expanded="true" signature="2951:2953" ph="..." />
+            <marker date="1539115078701" expanded="true" signature="3640:3641" ph="..." />
+            <marker date="1539115078701" expanded="true" signature="7068:7283" ph="..." />
+            <marker date="1539115078701" expanded="true" signature="7302:7321" ph="..." />
           </folding>
         </state>
       </provider>

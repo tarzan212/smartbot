@@ -4,7 +4,7 @@ import uuid
 import itertools
 import random
 import operator
-from gym_botenv.envs.environment import Website, State, SecurityProvider
+from gym_botenv.envs.environment import Website, State, SecurityProvider, Actions
 from gym import error, spaces, utils
 
 
@@ -173,14 +173,9 @@ class BotenvEnv(gym.Env):
     if the bot got blocked because of a bad security provider.
 
     """
-    reward_range = (-50, 10)
 
     def __init__(self, nSites=1000, nSP=10, prob_sp=1 / 10, prob_fp=1 / 4, prob_bb=1 / 50):
-        self.action_space = spaces.Discrete(3)  # 3 actions for now
-        self.observation_space = spaces.Tuple(
-            spaces.Tuple(spaces.Discrete(4)),
-            spaces.Discrete(1)
-        )
+        self.actions = (0, 1, 2)
 
         self.security_providers = generate_security_providers(nSP, (0, 10))
         self.sites = generate_fake_sites(nSites, self.security_providers, prob_sp, prob_fp, prob_bb)
@@ -189,8 +184,11 @@ class BotenvEnv(gym.Env):
         self.states_map = websites_to_state(self.sites, self.states, self.security_provider_freq)
         self.reset()
 
-    def step(self, action):
-        assert self.action_space.contains(action)
+    def step(self, state, action, bot):
+        action_bundle = Actions(self.action)
+        # TODO Make actions, launch bot, wait for return signal and return state, reward, done or no
+        # How do we know when its done ? Threshold of steps ?
+
 
     def _get_obs(self):
         pass

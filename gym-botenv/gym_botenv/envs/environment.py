@@ -95,5 +95,18 @@ class Actions:
         return list_actions
 
     def map_actions(self, actions: tuple):
+        assert actions is type(tuple)
+
+        for action in actions:
+            if action == 0:
+                continue
+                #TODO: How to pick a state ?
+            elif action == 1:
+                continue
+                # TODO: Pick one UA in list of UA in a file
+            elif action == 2:
+                continue
+                # TODO: Pick IP in list of IP in a file
+
         pass
 
