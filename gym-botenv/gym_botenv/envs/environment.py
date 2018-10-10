@@ -72,6 +72,19 @@ class State:
                % (self.useFP, self.useBB, self.rangeVisitedPage, self.rangeVisitedSecuProvider)
 
 
+def read_last_entry(filename: str):
+    f = open(filename, 'r')
+
+
+
+def update_file(filename: str):
+    """
+    Util function to push the last used item in a file to its last position. It
+    pops it and save it at the end of the file.
+    :param filename:
+    :return:
+    """
+
 class Actions:
     """
     Class mapping actions to their behavior and various utils methods.
@@ -94,7 +107,7 @@ class Actions:
 
         return list_actions
 
-    def map_actions(self, actions: tuple):
+    def map_actions(self, actions: tuple, bot: Bot):
         assert actions is type(tuple)
 
         for action in actions:

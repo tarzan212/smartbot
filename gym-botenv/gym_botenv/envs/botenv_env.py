@@ -96,17 +96,15 @@ def generate_actions(list_states: list):
     :param list_states:
     :return:
     """
-    list_actions = {}
+    dict_actions = {}
     len_states = len(list_states)
     for i in range(len_states + 2):
         if i >= len_states:
-            list_actions[i] = ()
+            dict_actions[i] = ()
             continue
-        list_actions[i] = list_states[i]
+        dict_actions[i] = list_states[i]
 
-    return list_actions
-
-
+    return dict_actions
 
 
 def normalized_websites_values(list_website: list, security_providers: dict):
@@ -195,21 +193,33 @@ class BotenvEnv(gym.Env):
 
     """
 
-    def __init__(self, nSites=1000, nSP=10, prob_sp=1 / 10, prob_fp=1 / 4, prob_bb=1 / 50):
-        self.actions = (0, 1, 2)
+    def __init__(self, n_sites=1000, nSP=10, prob_sp=1 / 10, prob_fp=1 / 4, prob_bb=1 / 50):
 
         self.security_providers = generate_security_providers(nSP, (0, 10))
-        self.sites = generate_fake_sites(nSites, self.security_providers, prob_sp, prob_fp, prob_bb)
+        self.sites = generate_fake_sites(n_sites, self.security_providers, prob_sp, prob_fp, prob_bb)
         self.states = generate_states(self.sites, 2)
+        self.actions = generate_actions(self.states)
+
+        self.nA = len(self.actions)
 
         self.states_map = websites_to_state(self.sites, self.states, self.security_provider_freq)
         self.reset()
 
-    def step(self, state, action, bot):
+    def step(self, current_state, action, bot):
+
         action_bundle = Actions(self.action)
-        # TODO Make actions, launch bot, wait for return signal and return state, reward, done or no
+        reward = 0
+        done = False
+        state = current_state
+        # TODO: Make actions, launch bot, wait for return signal and return state, reward, done or no
+        if action in range(0, 401):
+            state = action
+            #TODO: Compute rewards
+        else:
+            pass
         # How do we know when its done ? Threshold of steps ?
 
+        return state, reward, done
 
     def _get_obs(self):
         pass

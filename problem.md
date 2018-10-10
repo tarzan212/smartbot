@@ -36,7 +36,7 @@ Dans le cadre de notre problème, il convient de modeliser notre environnement e
     * Possibilité de définir les états par les sites web à visiter.
     * Possibilité de définir les états sur les hyperliens visités dans un même site web.
     * Etat terminal : soit le bot est bloqué, soit nous avons parcours la liste des sites web à visiter.
-    * > Le mieux, c'est un nombre fixé de sites a visiter, chaque site est un état : le comportement de notre bot pour chaque site ne varie pas, donc on peut les considérer comme des états.
+    * > Le mieux, c'est un nombre fixé de sites a visiter, chaque site est un état : le comportement de notre bot pour chaque site ne varie pas, donc on peut les considérer comme des états. 
 
 * **Gains** : (A dévelloper)
     * 0 Dans le cas d'un site crawlé sans détection. (pourquoi 0 ? car le taux de non-detection sera surement élevé, on ne prendre donc rarement en compte les gains négatifs. Solution : discounting factor)
