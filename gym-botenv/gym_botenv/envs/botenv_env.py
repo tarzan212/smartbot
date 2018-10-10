@@ -52,30 +52,33 @@ def generate_fake_sites(nSites: int, security_providers: dict, probSP: float, pr
     return list_website
 
 
-def generate_states(list_website: list, numBinaryParams: int):
+def generate_states(list_website: list, num_binary_params: int, params_pages: tuple, params_secu_provider: tuple):
     """
 
     :param list_website: List of website's
-    :param numBinaryParams: Amount of binary features
+    :param num_binary_params: Amount of binary features
+    :param params_pages: Tuple containing (max, step)
+    :param params_secu_provider: Tuple containing (max, step)
     :return: A tuple of states
     """
-    range_visited_page = 10
-    maxVisitedPage = 100
-    listRangeVisitedPage = []
-    for i in range(0, maxVisitedPage - range_visited_page + 1, range_visited_page):
-        listRangeVisitedPage.append((i, i + range_visited_page - 1))
 
-    num_website = len(list_website)
-    range_page_secu_provider = int(num_website / 100)
+    max_visited_page = params_pages[0]
+    range_visited_page = params_pages[1]
+    list_range_visited_page = []
+    for i in range(0, max_visited_page, range_visited_page):
+        list_range_visited_page.append((i, i + range_visited_page - 1))
+
+    max_security_provider = params_secu_provider[0]
+    range_page_secu_provider = params_secu_provider[1]
     list_range_page_secu_provider = []
-    for i in range(0, num_website - range_page_secu_provider + 1, range_page_secu_provider):
+    for i in range(0, max_security_provider, range_page_secu_provider):
         list_range_page_secu_provider.append((i, i + range_page_secu_provider - 1))
 
     list_states_features = []
-    for i in range(numBinaryParams):
+    for i in range(num_binary_params):
         list_states_features.append(list(range(2)))
 
-    list_states_features.append(listRangeVisitedPage)
+    list_states_features.append(list_range_visited_page)
     list_states_features.append(list_range_page_secu_provider)
 
     states_tuple = list(itertools.product(*list_states_features))
@@ -85,6 +88,24 @@ def generate_states(list_website: list, numBinaryParams: int):
         states.append(State(state))
 
     return states
+
+
+def generate_actions(list_states: list):
+    """
+
+    :param list_states:
+    :return:
+    """
+    list_actions = {}
+    len_states = len(list_states)
+    for i in range(len_states + 2):
+        if i >= len_states:
+            list_actions[i] = ()
+            continue
+        list_actions[i] = list_states[i]
+
+    return list_actions
+
 
 
 
