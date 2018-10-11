@@ -10,23 +10,35 @@ class SecurityProvider:
 
         self.counter_visited = 0
 
-        self.list_ips = []
-        self.list_ua = []
+        self.list_ips = {}
+        self.list_uas = {}
 
     def increment_counter(self):
         self.counter_visited += 1
 
     def update_bot_visit(self, bot: Bot):
-        if bot.ua in self.list_ua[:][0]: #TODO: Implement
+        if bot.ua in self.liste_uas.keys():
+            self.list_uas[bot.ua] += 1
+        else:
+            self.list_uas[bot.ua] = 1
 
+        if bot.ip in self.list_ips.keys():
+            self.list_ips[bot.ip] += 1
+        else:
+            self.list_ips[bot.ip] = 1
 
 
     def add_website(self, website):
         self.list_websites.append(website)
 
     def should_block_bot(self, bot: Bot):
-        if bot.ua in self.list_ua:
-            pass
+        if (bot.ua in self.list_ua.keys()) and (self.list_ua[bot.ua] > (25-self.grade)):
+            return True
+        if(bot.ip in self.list_ips.keys()) and(self.list_ips[bot.ip] > (25-self.grade)):
+            return True
+
+        return False
+
 
 
 class Website:
@@ -37,7 +49,7 @@ class Website:
         self.hasFingerprinting = FP
         self.blockbots = BB
         self.amount_page_visited = page_visited
-        self.
+        self.value = 0
 
     def compute_value(self, security_providers: dict):
         if self.security_provider != 0:

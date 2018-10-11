@@ -219,16 +219,33 @@ class BotenvEnv(gym.Env):
         bot.ip = action_result[2]
         state = action_result[0] if len(action_result[0]) > 1 else current_state
 
-        self.fake_crawl(state, bot)
+        if self.fake_crawl(state, bot):
+            pass # TODO a finir
+
 
         return state, reward, done
 
     def fake_crawl(self, state: State, bot: Bot):
+        block_bot = False
+
         website = self.state_map[state][0]
         website.amount_page_visited += 1
         upgrade_state_list(website, state, self.state_map, self.security_providers)
 
+        secu_provider = self.security_providers[website.security_provider]
+        secu_provider.update_bot_visit(bot)
+        self.security_providers[website.security_provider] = secu_provider
+        block_bot = secu_provider.should_block_bot(bot)
+        if block_bot:
+            return -10
+
         values = normalized_websites_values(self.sites, self.security_providers)
+        block_bot = is_bot_blocked(website, values)
+        if block_bot:
+            return -5
+
+        return 0
+
 
     def _get_obs(self):
         pass
