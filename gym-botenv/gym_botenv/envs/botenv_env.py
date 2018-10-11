@@ -4,8 +4,8 @@ import uuid
 import itertools
 import random
 import operator
-from gym_botenv.envs.environment import Website, State, SecurityProvider, Actions
-from gym import error, spaces, utils
+from gym_botenv.envs.classes.environment import Website, State, SecurityProvider, Actions
+from gym_botenv.envs.classes.bot import Bot
 
 
 def generate_security_providers(nSP: int, limits: tuple):
@@ -176,6 +176,8 @@ def upgrade_state_list(website, state, state_map: dict, security_providers: dict
                     break
 
 
+
+
 class BotenvEnv(gym.Env):
     """ Simple bot environment
 
@@ -208,18 +210,25 @@ class BotenvEnv(gym.Env):
     def step(self, current_state, action, bot):
 
         action_bundle = Actions(self.action)
+
         reward = 0
         done = False
-        state = current_state
         # TODO: Make actions, launch bot, wait for return signal and return state, reward, done or no
-        if action in range(0, 401):
-            state = action
-            #TODO: Compute rewards
-        else:
-            pass
-        # How do we know when its done ? Threshold of steps ?
+        action_result = action_bundle.map_actions(action, bot)
+        bot.ua = action_result[1]
+        bot.ip = action_result[2]
+        state = action_result[0] if len(action_result[0]) > 1 else current_state
+
+        self.fake_crawl(state, bot)
 
         return state, reward, done
+
+    def fake_crawl(self, state: State, bot: Bot):
+        website = self.state_map[state][0]
+        website.amount_page_visited += 1
+        upgrade_state_list(website, state, self.state_map, self.security_providers)
+
+        values = normalized_websites_values(self.sites, self.security_providers)
 
     def _get_obs(self):
         pass

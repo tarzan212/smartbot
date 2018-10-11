@@ -1,6 +1,6 @@
 import uuid
 import itertools
-
+from .bot import Bot
 
 class SecurityProvider:
 
@@ -9,22 +9,24 @@ class SecurityProvider:
         self.grade = grade_sp
 
         self.counter_visited = 0
-        self.list_websites = []
 
-        self.list_blocked_ip = []
-
-    def block_ip(self, ip, limit_ip:int):
-        if len(self.list_blocked_ip) < limit_ip:
-            self.list_blocked_ip = [ip] + self.list_blocked_ip
-        else:
-            self.list_blocked_ip.pop(limit_ip-1)
-            self.list_blocked_ip = [ip] + self.list_blocked_ip
+        self.list_ips = []
+        self.list_ua = []
 
     def increment_counter(self):
         self.counter_visited += 1
 
+    def update_bot_visit(self, bot: Bot):
+        if bot.ua in self.list_ua[:][0]: #TODO: Implement
+
+
+
     def add_website(self, website):
         self.list_websites.append(website)
+
+    def should_block_bot(self, bot: Bot):
+        if bot.ua in self.list_ua:
+            pass
 
 
 class Website:
@@ -35,6 +37,7 @@ class Website:
         self.hasFingerprinting = FP
         self.blockbots = BB
         self.amount_page_visited = page_visited
+        self.
 
     def compute_value(self, security_providers: dict):
         if self.security_provider != 0:
@@ -73,11 +76,21 @@ class State:
 
 
 def read_last_entry(filename: str):
-    f = open(filename, 'r')
-    line = f.readline()
-    f.close()
+    """
+        Util function to push the last used item in a file to its last position. It
+        pops it and save it at the end of the file.
+        :param filename:
+        :return:
+    """
+    with open(filename, 'r+') as f:
+        first = f.readline()
+        data = f.read()
+        f.seek(0)
+        f.write(data)
+        f.write(first)
+        f.truncate()
 
-    return line
+    return first
 
 
 def update_file(filename: str):
@@ -87,16 +100,22 @@ def update_file(filename: str):
     :param filename:
     :return:
     """
-    f = open(filename, "w")
-    
+    with open(filename, 'r+') as f:
+        first = f.readline()
+        data = f.read()
+        f.seek(0)
+        f.write(data)
+        f.write(first)
+        f.truncate()
+
 
 class Actions:
     """
     Class mapping actions to their behavior and various utils methods.
     """
 
-    def __init__(self, main_actions: list):
-        self.main_actions = main_actions
+    def __init__(self, liste_actions: list):
+        self.main_actions = liste_actions
 
     def generate_actions_combination(self):
         """
@@ -112,20 +131,18 @@ class Actions:
 
         return list_actions
 
-    def map_actions(self, actions: tuple, bot: Bot):
-        assert actions is type(tuple)
+    def map_actions(self, action: tuple, bot: Bot):
+        assert action is type(tuple)
+        state = ()
+        ua = bot.ua
+        ip = bot.ip
+        for act in action:
+            if act in range(0, len(self.main_actions)-1):
+                state = act
+            elif act == self.main_actions[-2]:
+                ua = read_last_entry("uas")
+            elif act == self.main_actions[-1]:
+                ip = read_last_entry("ips")
 
-        for action in actions:
-            if action == 0:
-                continue
-                # TODO: How to pick a state ?
-                # Randomly ?
-            elif action == 1:
-                continue
-                # TODO: Pick one UA in list of UA in a file
-            elif action == 2:
-                continue
-                # TODO: Pick IP in list of IP in a file
-
-        pass
+        return state, ua, ip
 
