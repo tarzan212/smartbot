@@ -74,7 +74,10 @@ class State:
 
 def read_last_entry(filename: str):
     f = open(filename, 'r')
+    line = f.readline()
+    f.close()
 
+    return line
 
 
 def update_file(filename: str):
@@ -84,6 +87,8 @@ def update_file(filename: str):
     :param filename:
     :return:
     """
+    f = open(filename, "w")
+    
 
 class Actions:
     """
