@@ -41,7 +41,7 @@ def generate_fake_sites(nSites: int, security_providers: dict, probSP: float, pr
 
     list_website = []
     for i in range(nSites):
-        id = uuid.uuid4()
+        id = str(uuid.uuid4())
         SP = np.random.choice(list(security_providers.keys()), p=probsSP)
         FP = np.random.choice([0, 1], p=probsFP)  # 0 : doesnt use fp, 1:use fp
         BB = np.random.choice([0, 1], p=probsBB)  # 0: doesnt block bots, 1 block bots
@@ -52,7 +52,7 @@ def generate_fake_sites(nSites: int, security_providers: dict, probSP: float, pr
     return list_website
 
 
-def generate_states(list_website: list, num_binary_params: int, params_pages: tuple, params_secu_provider: tuple):
+def generate_states(num_binary_params: int, params_pages: tuple, params_secu_provider: tuple):
     """
 
     :param list_website: List of website's
@@ -148,7 +148,8 @@ def websites_to_state(list_websites: list, list_states: list, security_providers
                     copy_list_website.pop(index)
                 else:
                     if security_providers[security_provider].counter_visited in range(state.rangeVisitedSecuProvider[0],
-                                                           state.rangeVisitedSecuProvider[1] + 1):
+                                                                                      state.rangeVisitedSecuProvider[
+                                                                                          1] + 1):
                         state_map[state].append(website)
                         copy_list_website.pop(index)
 
@@ -171,11 +172,16 @@ def upgrade_state_list(website, state, state_map: dict, security_providers: dict
                 break
             else:
                 if security_providers[security_provider].counter_visited in range(state.rangeVisitedSecuProvider[0],
-                                                       state.rangeVisitedSecuProvider[1] + 1):
+                                                                                  state.rangeVisitedSecuProvider[
+                                                                                      1] + 1):
                     state_map[state].append(website)
                     break
 
 
+def get_updated_websites(state_map: dict, sites: list):
+    for key, sites in state_map.items():
+        for site in sites:
+            sites.append(site)
 
 
 class BotenvEnv(gym.Env):
@@ -199,17 +205,20 @@ class BotenvEnv(gym.Env):
 
         self.security_providers = generate_security_providers(nSP, (0, 10))
         self.sites = generate_fake_sites(n_sites, self.security_providers, prob_sp, prob_fp, prob_bb)
-        self.states = generate_states(self.sites, 2)
-        self.actions = generate_actions(self.states)
+        self.states = generate_states(2, (100, 10), (1000, 50))
+        self.actions = generate_actions(self.states)  # dict map action - state
 
         self.nA = len(self.actions)
+        self.nSteps = 0
 
-        self.states_map = websites_to_state(self.sites, self.states, self.security_provider_freq)
+        self.states_map = websites_to_state(self.sites, self.states, self.security_providers)
+        self.state = self.states[0]
+
         self.reset()
 
-    def step(self, current_state, action, bot):
+    def step(self, action, bot):
 
-        action_bundle = Actions(self.action)
+        action_bundle = Actions(self.actions)
 
         reward = 0
         done = False
@@ -217,20 +226,20 @@ class BotenvEnv(gym.Env):
         action_result = action_bundle.map_actions(action, bot)
         bot.ua = action_result[1]
         bot.ip = action_result[2]
-        state = action_result[0] if len(action_result[0]) > 1 else current_state
+        self.state = action_result[0] if len(action_result[0]) > 1 else self.state
 
-        if self.fake_crawl(state, bot):
-            pass # TODO a finir
+        reward = self.fake_crawl(self.state, bot)
+        self.nSteps += 1
 
-
-        return state, reward, done
+        return self.state, reward, done
 
     def fake_crawl(self, state: State, bot: Bot):
-        block_bot = False
-
-        website = self.state_map[state][0]
+        if len(self.states_map[state]) < 1:
+            return 0
+        website = self.states_map[state][0]
         website.amount_page_visited += 1
-        upgrade_state_list(website, state, self.state_map, self.security_providers)
+
+        upgrade_state_list(website, state, self.states_map, self.security_providers)
 
         secu_provider = self.security_providers[website.security_provider]
         secu_provider.update_bot_visit(bot)
@@ -246,7 +255,6 @@ class BotenvEnv(gym.Env):
 
         return 0
 
-
     def _get_obs(self):
         pass
 
@@ -254,6 +262,4 @@ class BotenvEnv(gym.Env):
         pass
 
     def render(self, mode='human', close=False):
-        pass
-
-#TODO: How to take into consideration that an IP visited a website ?
+        print("-------------")

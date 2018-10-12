@@ -1,4 +1,3 @@
-import ipaddress
 
 
 class Bot:
@@ -7,6 +6,6 @@ class Bot:
     and other further values
     """
 
-    def __init__(self, ip: ipaddress, ua: str):
+    def __init__(self, ip: str, ua: str):
         self.ip = ip
         self.ua = ua

@@ -2,6 +2,7 @@ import uuid
 import itertools
 from .bot import Bot
 
+
 class SecurityProvider:
 
     def __init__(self, id_sp: int, grade_sp: int):
@@ -17,7 +18,7 @@ class SecurityProvider:
         self.counter_visited += 1
 
     def update_bot_visit(self, bot: Bot):
-        if bot.ua in self.liste_uas.keys():
+        if bot.ua in self.list_uas.keys():
             self.list_uas[bot.ua] += 1
         else:
             self.list_uas[bot.ua] = 1
@@ -27,18 +28,16 @@ class SecurityProvider:
         else:
             self.list_ips[bot.ip] = 1
 
-
     def add_website(self, website):
         self.list_websites.append(website)
 
     def should_block_bot(self, bot: Bot):
-        if (bot.ua in self.list_ua.keys()) and (self.list_ua[bot.ua] > (25-self.grade)):
+        if (bot.ua in self.list_uas.keys()) and (self.list_uas[bot.ua] > (25-self.grade)):
             return True
         if(bot.ip in self.list_ips.keys()) and(self.list_ips[bot.ip] > (25-self.grade)):
             return True
 
         return False
-
 
 
 class Website:
@@ -86,6 +85,9 @@ class State:
         return """ {'fp' : %r, 'bb' : %r, 'visited' : %s, 'range_secu_provider' : %s }""" \
                % (self.useFP, self.useBB, self.rangeVisitedPage, self.rangeVisitedSecuProvider)
 
+    def __len__(self):
+        return 4
+
 
 def read_last_entry(filename: str):
     """
@@ -103,22 +105,6 @@ def read_last_entry(filename: str):
         f.truncate()
 
     return first
-
-
-def update_file(filename: str):
-    """
-    Util function to push the last used item in a file to its last position. It
-    pops it and save it at the end of the file.
-    :param filename:
-    :return:
-    """
-    with open(filename, 'r+') as f:
-        first = f.readline()
-        data = f.read()
-        f.seek(0)
-        f.write(data)
-        f.write(first)
-        f.truncate()
 
 
 class Actions:
@@ -143,18 +129,16 @@ class Actions:
 
         return list_actions
 
-    def map_actions(self, action: tuple, bot: Bot):
-        assert action is type(tuple)
+    def map_actions(self, action, bot: Bot):
         state = ()
         ua = bot.ua
         ip = bot.ip
-        for act in action:
-            if act in range(0, len(self.main_actions)-1):
-                state = act
-            elif act == self.main_actions[-2]:
-                ua = read_last_entry("uas")
-            elif act == self.main_actions[-1]:
-                ip = read_last_entry("ips")
+        if action in range(0, len(self.main_actions)-1):
+            state = self.main_actions[action]
+        elif action == self.main_actions[-2]:
+            ua = read_last_entry("uas")
+        elif action == self.main_actions[-1]:
+            ip = read_last_entry("ips")
 
         return state, ua, ip
 
