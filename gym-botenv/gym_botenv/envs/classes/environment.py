@@ -135,10 +135,11 @@ class Actions:
         ip = bot.ip
         if action in range(0, len(self.main_actions)-1):
             state = self.main_actions[action]
-        elif action == self.main_actions[-2]:
-            ua = read_last_entry("uas")
-        elif action == self.main_actions[-1]:
-            ip = read_last_entry("ips")
+        elif action == len(self.main_actions)-2:
+            ua = read_last_entry("./data/uas")
+        elif action == len(self.main_actions)-1:
+            ip = read_last_entry("./data/ips")
 
         return state, ua, ip
+
 

@@ -131,7 +131,7 @@ def is_bot_blocked(website: Website, values_dict: dict):
 
 def websites_to_state(list_websites: list, list_states: list, security_providers: dict):
     state_map = {}
-    copy_list_website = list_websites
+    copy_list_website = list_websites.copy()
     for state in list_states:
         state_map[state] = []
         for index, website in enumerate(copy_list_website):
@@ -246,11 +246,13 @@ class BotenvEnv(gym.Env):
         self.security_providers[website.security_provider] = secu_provider
         block_bot = secu_provider.should_block_bot(bot)
         if block_bot:
+            print("Blocked by secu provider")
             return -10
 
         values = normalized_websites_values(self.sites, self.security_providers)
         block_bot = is_bot_blocked(website, values)
         if block_bot:
+            print("Blocked by website")
             return -5
 
         return 0
@@ -263,3 +265,5 @@ class BotenvEnv(gym.Env):
 
     def render(self, mode='human', close=False):
         print("-------------")
+
+# TODO: How to take into consideration that an IP visited a website ?
