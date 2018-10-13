@@ -153,6 +153,6 @@ if __name__== '__main__':
         sess.run(tf.initialize_all_variables())
         # Note, due to randomness in the policy the number of episodes you need to learn a good
         # policy may vary.
-        stats = actor_critic(env, policy_estimator, value_estimator, 400)
+        stats = actor_critic(env, policy_estimator, value_estimator, 200)
 
     plotting.plot_episode_stats(stats, smoothing_window=10)

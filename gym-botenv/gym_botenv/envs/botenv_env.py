@@ -270,7 +270,7 @@ class BotenvEnv(gym.Env):
         """
         if len(self.states_map[state]) < 1:
             self.website = 0
-            return 0
+            return -1
         website = self.states_map[state][0]
         website.amount_page_visited += 1
         self.website = website
@@ -289,7 +289,7 @@ class BotenvEnv(gym.Env):
         if block_bot:
             return -5
 
-        return 5
+        return 10
 
     def get_state_map(self):
         return { x:i for i, x in enumerate(self.states)}
