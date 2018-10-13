@@ -4,9 +4,10 @@ import uuid
 import itertools
 import random
 import operator
-from gym_botenv.envs.classes.environment import Website, State, SecurityProvider, Actions
-from gym_botenv.envs.classes.environment import read_last_entry as read_line
-from gym_botenv.envs.classes.bot import Bot
+import os
+from .classes.environment import Website, State, SecurityProvider, Actions
+from .classes.environment import read_last_entry as read_line
+from .classes.bot import Bot
 
 
 def generate_security_providers(nSP: int, limits: tuple):
@@ -184,9 +185,9 @@ def initiate_bot():
     Function to initiate the bot
     :return:
     """
-
-    ip = read_line("./data/ips")
-    ua = read_line("./data/uas")
+    directory = os.path.dirname(__file__)
+    ip = read_line(os.path.join(directory, "data/ips"))
+    ua = read_line(os.path.join(directory, "data/uas"))
 
     return Bot(ip, ua)
 
@@ -208,12 +209,13 @@ class BotenvEnv(gym.Env):
 
     """
 
-    def __init__(self, n_sites=1000, nSP=10, prob_sp=1 / 10, prob_fp=1 / 4, prob_bb=1 / 50):
+    def __init__(self, num_steps, n_sites=1000, nSP=10, prob_sp=1 / 10, prob_fp=1 / 4, prob_bb=1 / 50):
 
         self.security_providers = generate_security_providers(nSP, (0, 10))
         self.sites = generate_fake_sites(n_sites, self.security_providers, prob_sp, prob_fp, prob_bb)
         self.states = generate_states(2, (100, 10), (1000, 50))
         self.actions = generate_actions(self.states)  # dict map action - state
+        self.max_steps = num_steps
         self.bot = initiate_bot()
 
         self.state = self.states[0]
@@ -223,11 +225,12 @@ class BotenvEnv(gym.Env):
         self.website = 0
 
         self.nA = len(self.actions)
+        self.nStates = len(self.states)
         self.nSteps = 0
 
         self.states_map = websites_to_state(self.sites, self.states, self.security_providers)
 
-    def step(self, action, bot):
+    def step(self, action):
         """
         Perform one step into the episode. This method will map the action to the corresponding behavior
         and launch the fake bot to crawl. Actions from 0 to nA-2 will simply crawl a website.
@@ -242,17 +245,19 @@ class BotenvEnv(gym.Env):
         reward = 0
         done = False
         # TODO: Make actions, launch bot, wait for return signal and return state, reward, done or no
-        action_result = action_bundle.map_actions(action, bot)
-        bot.ua = action_result[1]
-        bot.ip = action_result[2]
+        action_result = action_bundle.map_actions(action, self.bot)
+        self.bot.ua = action_result[1]
+        self.bot.ip = action_result[2]
         self.state = action_result[0] if len(action_result[0]) > 1 else self.state
 
-        reward = self._fake_crawl(self.state, bot)
+        reward = self._fake_crawl(self.state, self.bot)
         self.nSteps += 1
 
         self.reward = reward
+        if self.nSteps == self.max_steps:
+            done = True
 
-        return self.state, reward, done
+        return self.state, reward, done, ''
 
     def _fake_crawl(self, state: State, bot: Bot):
         """
@@ -277,19 +282,17 @@ class BotenvEnv(gym.Env):
         self.security_providers[website.security_provider] = secu_provider
         block_bot = secu_provider.should_block_bot(bot)
         if block_bot:
-            print("Blocked by secu provider")
             return -10
 
         values = normalized_websites_values(self.sites, self.security_providers)
         block_bot = is_bot_blocked(website, values)
         if block_bot:
-            print("Blocked by website")
             return -5
 
-        return 0
+        return 5
 
-    def _get_obs(self):
-        pass
+    def get_state_map(self):
+        return { x:i for i, x in enumerate(self.states)}
 
     def reset(self, n_sites=1000, nSP=10, prob_sp=1 / 10, prob_fp=1 / 4, prob_bb=1 / 50):
         self.security_providers = generate_security_providers(nSP, (1, 10))
@@ -302,10 +305,11 @@ class BotenvEnv(gym.Env):
         self.reward = 0
         self.website = 0
 
-        self.nA = len(self.actions)
         self.nSteps = 0
 
         self.states_map = websites_to_state(self.sites, self.states, self.security_providers)
+
+        return self.state
 
     def render(self, mode='all', close=False):
         if mode == 'blocked' and self.reward >= 0:

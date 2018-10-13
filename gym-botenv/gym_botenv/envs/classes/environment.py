@@ -1,6 +1,7 @@
 import uuid
 import itertools
 import numpy as np
+import os
 from .bot import Bot
 
 
@@ -143,12 +144,14 @@ class Actions:
         state = ()
         ua = bot.ua
         ip = bot.ip
+        directory = os.path.dirname(__file__)
+
         if action in range(0, len(self.main_actions)-1):
             state = self.main_actions[action]
         elif action == len(self.main_actions)-2:
-            ua = read_last_entry("./data/uas")
+            ua = read_last_entry(os.path.join(directory, "../data/uas"))
         elif action == len(self.main_actions)-1:
-            ip = read_last_entry("./data/ips")
+            ip = read_last_entry(os.path.join(directory, "../data/uas"))
 
         return state, ua, ip
 

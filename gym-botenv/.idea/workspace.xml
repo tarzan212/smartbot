@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d38814f-8eb5-401d-98f0-d1835897cde2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../CompteRendu19092018.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_botenv/envs/botenv_env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gym_botenv/envs/classes/environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_botenv/envs/classes/environment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gym_botenv/envs/data/uas" beforeDir="false" afterPath="$PROJECT_DIR$/gym_botenv/envs/data/uas" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +16,7 @@
     <session id="-1138364321">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.21" value="2" />
@@ -46,14 +45,14 @@
         <counts>
           <entry key="dummy" value="65" />
           <entry key="ips" value="53" />
-          <entry key="py" value="17944" />
-          <entry key="txt" value="373" />
+          <entry key="py" value="17967" />
+          <entry key="txt" value="445" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="491" />
-          <entry key="Python" value="17944" />
+          <entry key="PLAIN_TEXT" value="563" />
+          <entry key="Python" value="17967" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -77,11 +76,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gym_botenv/envs/botenv_env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="293" column="87" selection-start-line="293" selection-start-column="87" selection-end-line="293" selection-end-column="87" />
+            <state relative-caret-position="559">
+              <caret line="300" column="37" lean-forward="true" selection-start-line="300" selection-start-column="37" selection-end-line="300" selection-end-column="37" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1539444700329" expanded="true" signature="6763:6766" ph="..." />
+                <marker date="1539448131133" expanded="true" signature="6763:6766" ph="..." />
               </folding>
             </state>
           </provider>
@@ -157,31 +156,6 @@
               <item name="gym-botenv" type="b2602c69:ProjectViewProjectNode" />
               <item name="gym-botenv" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="gym-botenv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gym-botenv" type="462c0819:PsiDirectoryNode" />
-              <item name="gym_botenv" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gym-botenv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gym-botenv" type="462c0819:PsiDirectoryNode" />
-              <item name="gym_botenv" type="462c0819:PsiDirectoryNode" />
-              <item name="envs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gym-botenv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gym-botenv" type="462c0819:PsiDirectoryNode" />
-              <item name="gym_botenv" type="462c0819:PsiDirectoryNode" />
-              <item name="envs" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gym-botenv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gym-botenv" type="462c0819:PsiDirectoryNode" />
-              <item name="gym_botenv" type="462c0819:PsiDirectoryNode" />
-              <item name="envs" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -190,7 +164,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
@@ -277,12 +251,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539363299577</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed some mistakes, added probabilities to security provider blocking">
+      <created>1539444752343</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1539444752343</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="62" y="-11" width="1859" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09214831" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -313,7 +293,8 @@
     <MESSAGE value="Quick method fixture" />
     <MESSAGE value="Blocking algorithm" />
     <MESSAGE value="Finalized the environment&#10;Still needing restructuring, reformatting, and removing duplicate, along with simplifying." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finalized the environment&#10;Still needing restructuring, reformatting, and removing duplicate, along with simplifying." />
+    <MESSAGE value="Fixed some mistakes, added probabilities to security provider blocking" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some mistakes, added probabilities to security provider blocking" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///usr/local/lib/python3.5/dist-packages/gym/spaces/box.py">
@@ -419,11 +400,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gym_botenv/envs/botenv_env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="293" column="87" selection-start-line="293" selection-start-column="87" selection-end-line="293" selection-end-column="87" />
+        <state relative-caret-position="559">
+          <caret line="300" column="37" lean-forward="true" selection-start-line="300" selection-start-column="37" selection-end-line="300" selection-end-column="37" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1539444700329" expanded="true" signature="6763:6766" ph="..." />
+            <marker date="1539448131133" expanded="true" signature="6763:6766" ph="..." />
           </folding>
         </state>
       </provider>
