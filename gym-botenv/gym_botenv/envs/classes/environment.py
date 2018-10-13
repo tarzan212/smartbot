@@ -1,5 +1,6 @@
 import uuid
 import itertools
+import numpy as np
 from .bot import Bot
 
 
@@ -32,10 +33,19 @@ class SecurityProvider:
         self.list_websites.append(website)
 
     def should_block_bot(self, bot: Bot):
+        lowest_prob = 0.8
+        highest_prob = 1
+        lowest_grade = 1
+        highest_grade = 10
+        formula = lambda x: ((x-lowest_grade)/(lowest_grade - highest_grade))*(highest_prob - lowest_prob) + lowest_prob
+
+        prob = np.ones(2, dtype=float) * formula(self.grade)
+        prob[1] = 1 - prob[1]
+
         if (bot.ua in self.list_uas.keys()) and (self.list_uas[bot.ua] > (25-self.grade)):
-            return True
+            return np.random.choice([True, False], p=prob)
         if(bot.ip in self.list_ips.keys()) and(self.list_ips[bot.ip] > (25-self.grade)):
-            return True
+            return np.random.choice([True, False], p=prob)
 
         return False
 
@@ -94,7 +104,7 @@ def read_last_entry(filename: str):
         Util function to push the last used item in a file to its last position. It
         pops it and save it at the end of the file.
         :param filename:
-        :return:
+        :return: first line of file passed in parameter
     """
     with open(filename, 'r+') as f:
         first = f.readline()

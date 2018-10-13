@@ -5,6 +5,7 @@ import itertools
 import random
 import operator
 from gym_botenv.envs.classes.environment import Website, State, SecurityProvider, Actions
+from gym_botenv.envs.classes.environment import read_last_entry as read_line
 from gym_botenv.envs.classes.bot import Bot
 
 
@@ -178,10 +179,16 @@ def upgrade_state_list(website, state, state_map: dict, security_providers: dict
                     break
 
 
-def get_updated_websites(state_map: dict, sites: list):
-    for key, sites in state_map.items():
-        for site in sites:
-            sites.append(site)
+def initiate_bot():
+    """
+    Function to initiate the bot
+    :return:
+    """
+
+    ip = read_line("./data/ips")
+    ua = read_line("./data/uas")
+
+    return Bot(ip, ua)
 
 
 class BotenvEnv(gym.Env):
@@ -207,17 +214,29 @@ class BotenvEnv(gym.Env):
         self.sites = generate_fake_sites(n_sites, self.security_providers, prob_sp, prob_fp, prob_bb)
         self.states = generate_states(2, (100, 10), (1000, 50))
         self.actions = generate_actions(self.states)  # dict map action - state
+        self.bot = initiate_bot()
+
+        self.state = self.states[0]
+        self.action = 0
+        self.observation = self.state
+        self.reward = 0
+        self.website = 0
 
         self.nA = len(self.actions)
         self.nSteps = 0
 
         self.states_map = websites_to_state(self.sites, self.states, self.security_providers)
-        self.state = self.states[0]
-
-        self.reset()
 
     def step(self, action, bot):
-
+        """
+        Perform one step into the episode. This method will map the action to the corresponding behavior
+        and launch the fake bot to crawl. Actions from 0 to nA-2 will simply crawl a website.
+        The two last actions will respectively change the bot's IP and the UA.
+        :param action: The action to take at this time step
+        :param bot:
+        :return: tuple containing the next state, the reward of this time step, and a boolean done.
+        """
+        self.action = action
         action_bundle = Actions(self.actions)
 
         reward = 0
@@ -228,16 +247,28 @@ class BotenvEnv(gym.Env):
         bot.ip = action_result[2]
         self.state = action_result[0] if len(action_result[0]) > 1 else self.state
 
-        reward = self.fake_crawl(self.state, bot)
+        reward = self._fake_crawl(self.state, bot)
         self.nSteps += 1
+
+        self.reward = reward
 
         return self.state, reward, done
 
-    def fake_crawl(self, state: State, bot: Bot):
+    def _fake_crawl(self, state: State, bot: Bot):
+        """
+        This private method will fake crawl a website corresponding to a state. The bot will get blocked by
+        a security provider if it's powerful (i.e a high grade) and if an IP or an UA has visited the
+        security provider too many times.
+        :param state: the actual state
+        :param bot: the bot
+        :return: the reward (0 for not blocked)
+        """
         if len(self.states_map[state]) < 1:
+            self.website = 0
             return 0
         website = self.states_map[state][0]
         website.amount_page_visited += 1
+        self.website = website
 
         upgrade_state_list(website, state, self.states_map, self.security_providers)
 
@@ -260,10 +291,27 @@ class BotenvEnv(gym.Env):
     def _get_obs(self):
         pass
 
-    def reset(self):
-        pass
+    def reset(self, n_sites=1000, nSP=10, prob_sp=1 / 10, prob_fp=1 / 4, prob_bb=1 / 50):
+        self.security_providers = generate_security_providers(nSP, (1, 10))
+        self.sites = generate_fake_sites(n_sites, self.security_providers, prob_sp, prob_fp, prob_bb)
+        self.bot = initiate_bot()
 
-    def render(self, mode='human', close=False):
-        print("-------------")
+        self.state = self.states[0]
+        self.action = 0
+        self.observation = self.state
+        self.reward = 0
+        self.website = 0
 
-# TODO: How to take into consideration that an IP visited a website ?
+        self.nA = len(self.actions)
+        self.nSteps = 0
+
+        self.states_map = websites_to_state(self.sites, self.states, self.security_providers)
+
+    def render(self, mode='all', close=False):
+        if mode == 'blocked' and self.reward >= 0:
+            return
+        print("------------- Step {}".format(self.nSteps))
+        print("State : {}".format(self.state))
+        print("Action taken at step t-1 : {}".format(self.action))
+        print("Website visited : {}".format(self.website))
+        print("Reward for step t : {}".format(self.reward), end='\n\n')
